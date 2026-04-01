@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance for Case Interviews</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #141720;
+    --card: #1a1e2e;
+    --border: #252a3d;
+    --accent: #4f9cf9;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --accent4: #fb923c;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --highlight: #fbbf24;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d0f14 0%, #141720 40%, #1a1e2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(79,156,249,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 200px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #fff;
+    max-width: 700px;
+  }
+  header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  header p.subtitle {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 500px;
+  }
+  .source-chips {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 24px;
+  }
+  .chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+  }
+
+  /* NAV */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    padding: 14px 18px;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* MAIN */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 60px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(79,156,249,0.08);
+    border: 1px solid rgba(79,156,249,0.2);
+    border-radius: 6px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+  .section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #fff;
+  }
+
+  /* CONCEPT CARD */
+  .concept {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .concept:hover { border-color: #353a55; }
+  .concept-header {
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .concept-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .concept-icon {
+    font-size: 20px;
+  }
+  .concept-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .tag-formula { background: rgba(79,156,249,0.1); color: var(--accent); border: 1px solid rgba(79,156,249,0.2); }
+  .tag-ratio { background: rgba(167,139,250,0.1); color: var(--accent2); border: 1px solid rgba(167,139,250,0.2); }
+  .tag-metric { background: rgba(52,211,153,0.1); color: var(--accent3); border: 1px solid rgba(52,211,153,0.2); }
+  .tag-method { background: rgba(251,146,60,0.1); color: var(--accent4); border: 1px solid rgba(251,146,60,0.2); }
+
+  .concept-body {
+    padding: 12px 24px 20px;
+  }
+  .concept-body p {
+    color: #a0aec0;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  /* FORMULA BOX */
+  .formula-box {
+    background: #0f1117;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    line-height: 1.6;
+  }
+  .formula-box.purple { border-left-color: var(--accent2); color: var(--accent2); }
+  .formula-box.green { border-left-color: var(--accent3); color: var(--accent3); }
+  .formula-box.orange { border-left-color: var(--accent4); color: var(--accent4); }
+
+  /* EXAMPLE BOX */
+  .example-box {
+    background: rgba(52,211,153,0.04);
+    border: 1px solid rgba(52,211,153,0.15);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-top: 14px;
+  }
+  .example-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent3);
+    margin-bottom: 8px;
+  }
+  .example-box p {
+    color: #94a3b8 !important;
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+  .example-box p:last-child { margin-bottom: 0 !important; }
+  .example-calc {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent3);
+    margin: 4px 0;
+  }
+
+  /* TIP BOX */
+  .tip-box {
+    background: rgba(251,191,36,0.04);
+    border: 1px solid rgba(251,191,36,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .tip-icon { font-size: 16px; margin-top: 1px; }
+  .tip-box p { color: #d4a853 !important; font-size: 13px !important; margin: 0 !important; }
+
+  /* INCOME STATEMENT TABLE */
+  .is-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 14px 0;
+  }
+  .is-table td, .is-table th {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+  .is-table th {
+    background: #0f1117;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+  .is-table tr:last-child td { border-bottom: none; }
+  .is-table .row-highlight td {
+    background: rgba(79,156,249,0.05);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .is-table .row-green td {
+    color: var(--accent3);
+    font-weight: 500;
+  }
+  .is-table .is-label { color: var(--text); }
+  .is-table .is-formula { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; }
+  .is-table .is-value { color: var(--accent3); font-family: 'DM Mono', monospace; text-align: right; }
+  .is-minus { color: #f87171; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* QUICK REF */
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .quick-ref-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .quick-ref-card .qr-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .quick-ref-card .qr-formula {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    line-height: 1.5;
+  }
+
+  /* PROFIT TREE */
+  .tree {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    background: #0f1117;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    line-height: 2;
+    color: var(--text);
+    overflow-x: auto;
+  }
+  .tree .t-root { color: var(--highlight); font-size: 13px; }
+  .tree .t-l1 { color: var(--accent); padding-left: 20px; }
+  .tree .t-l2 { color: var(--accent2); padding-left: 40px; }
+  .tree .t-l3 { color: #94a3b8; padding-left: 60px; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    header { padding: 40px 20px 30px; }
+    nav { padding: 0 20px; }
+    main { padding: 24px 16px 60px; }
+    .concept-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">McKinsey Case Interview Prep</div>
+  <h1>Finance & Formulas<br>for <em>CS Students</em></h1>
+  <p class="subtitle">Everything pulled from real case books — explained simply with examples so you can apply it on the spot.</p>
+  <div class="source-chips">
+    <span class="chip">Haas 2015-16</span>
+    <span class="chip">Duke Fuqua 2018-19</span>
+    <span class="chip">Wharton 2017</span>
+  </div>
+</header>
+
+<nav>
+  <a href="#profitability">Profitability</a>
+  <a href="#income-statement">Income Statement</a>
+  <a href="#margins">Margins</a>
+  <a href="#valuation">Valuation</a>
+  <a href="#investment">Investment Analysis</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#costs">Cost Types</a>
+  <a href="#quick-ref">Quick Ref</a>
+</nav>
+
+<main>
+
+  <!-- SECTION 0: THE CORE MENTAL MODEL -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">00 — Foundation</span>
+      <h2>The One Formula That Runs Every Case</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🧠</span> The Profit Equation</div>
+        <span class="concept-tag tag-formula">FORMULA</span>
+      </div>
+      <div class="concept-body">
+        <p>Every single case that involves a struggling business reduces to this. Before anything else, burn this into your memory.</p>
+        <div class="formula-box">Profit = Revenue − Cost<br>Revenue = Price × Volume<br>Cost = Fixed Costs + Variable Costs</div>
+        <p>Think of it like a program: <code style="color: var(--accent); font-family: 'DM Mono', monospace;">profit()</code> is the function. It takes two inputs: <code style="color: var(--accent); font-family: 'DM Mono', monospace;">revenue</code> and <code style="color: var(--accent); font-family: 'DM Mono', monospace;">cost</code>. When profit is declining, you debug by checking both inputs. From the Haas case book: <em>"Profit is a function of Revenue and Costs"</em> — that's literally what interviewers write in their guide notes.</p>
+        <div class="example-box">
+          <div class="example-label">🖥 CS Analogy</div>
+          <p>Think of a company like a system. Revenue is the input throughput (price × volume = how fast you process tickets × how much you charge per ticket). Costs are your overhead (fixed = servers you always pay for; variable = compute you use per request). Profit is net output. When output shrinks, you debug: is input down, or did overhead spike?</p>
+        </div>
+
+        <!-- PROFIT TREE -->
+        <div class="tree" style="margin-top: 14px;">
+          <div class="t-root">Profit (π) = Revenue − Costs</div>
+          <div class="t-l1">├── Revenue = Price × Volume</div>
+          <div class="t-l2">├── Price → list price, discounts, mix</div>
+          <div class="t-l2">└── Volume → # of customers × units/customer</div>
+          <div class="t-l1">└── Costs = Fixed + Variable + Other</div>
+          <div class="t-l2">├── Fixed → rent, salaries, depreciation</div>
+          <div class="t-l2">├── Variable → COGS, shipping per unit</div>
+          <div class="t-l2">└── Other → interest, taxes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: INCOME STATEMENT -->
+  <div class="section" id="income-statement">
+    <div class="section-header">
+      <span class="section-num">01 — The Income Statement</span>
+      <h2>Reading a P&L in 60 Seconds</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">📄</span> Income Statement (P&L)</div>
+        <span class="concept-tag tag-metric">STRUCTURE</span>
+      </div>
+      <div class="concept-body">
+        <p>The income statement is the single most important document in case interviews. You'll be handed one and asked "what do you notice?" Here's the full structure from the Haas case book:</p>
+        <table class="is-table">
+          <thead>
+            <tr><th>Line Item</th><th>Also Called</th><th>What it means</th><th>Example ($M)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="is-label">Sales / Revenue</td><td class="is-formula">Top Line</td><td>What you charge customers</td><td class="is-value">$1,000</td></tr>
+            <tr><td class="is-label is-minus">− Cost of Goods Sold</td><td class="is-formula">COGS</td><td>Direct cost to make the product</td><td class="is-value is-minus">−$500</td></tr>
+            <tr class="row-highlight"><td class="is-label">= Gross Profit</td><td class="is-formula">Gross Margin</td><td>Revenue minus what you spent making it</td><td class="is-value">$500</td></tr>
+            <tr><td class="is-label is-minus">− Operating Expenses</td><td class="is-formula">OpEx / SG&A</td><td>Cost to run the business (marketing, rent, salaries)</td><td class="is-value is-minus">−$200</td></tr>
+            <tr class="row-highlight"><td class="is-label">= Operating Profit</td><td class="is-formula">EBIT</td><td>Profit from core operations</td><td class="is-value">$300</td></tr>
+            <tr><td class="is-label is-minus">− Non-Operating Expense</td><td class="is-formula">Interest, etc.</td><td>Costs not from running the business</td><td class="is-value is-minus">−$30</td></tr>
+            <tr><td class="is-label">= Pre-Tax Income</td><td class="is-formula">EBT</td><td>Profit before government takes its cut</td><td class="is-value">$270</td></tr>
+            <tr><td class="is-label is-minus">− Taxes</td><td class="is-formula">~30-35%</td><td>Government's share</td><td class="is-value is-minus">−$81</td></tr>
+            <tr class="row-green"><td class="is-label">= Net Income</td><td class="is-formula">Bottom Line</td><td>What the company actually keeps</td><td class="is-value">$189</td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <p><strong>Interview move:</strong> When handed a P&L, immediately compute margins for each line (divide by revenue). This tells you where the problem is. In the CoffeeCo case, gross margin was flat at 50% but OpEx margin was rising — that's your smoking gun.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: MARGINS -->
+  <div class="section" id="margins">
+    <div class="section-header">
+      <span class="section-num">02 — Margins</span>
+      <h2>The Percentages Interviewers Love</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">📊</span> Gross Margin</div>
+        <span class="concept-tag tag-ratio">RATIO</span>
+      </div>
+      <div class="concept-body">
+        <p>How much you keep after paying to make the product. A software company might have 80%+ gross margins because each extra user costs almost nothing. A grocery store might have 25%.</p>
+        <div class="formula-box">Gross Margin = (Revenue − COGS) / Revenue × 100%</div>
+        <div class="example-box">
+          <div class="example-label">📦 Example — from Wharton case book</div>
+          <p>A clothing store has Revenue = $125M, COGS = $87.5M</p>
+          <div class="example-calc">Gross Margin = ($125M − $87.5M) / $125M = 30%</div>
+          <p>This means for every $1 of clothing sold, 30 cents goes toward running the business and profit.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">⚙️</span> Operating Margin</div>
+        <span class="concept-tag tag-ratio">RATIO</span>
+      </div>
+      <div class="concept-body">
+        <p>After paying both COGS <em>and</em> operating expenses (rent, salaries, marketing). This is your profit from actually running the business.</p>
+        <div class="formula-box">Operating Margin = Operating Profit / Revenue × 100%</div>
+        <div class="example-box">
+          <div class="example-label">✈️ Example — from Duke case book (Sardine Airlines)</div>
+          <p>Revenue = $2,143M, Net Income = $371M</p>
+          <div class="example-calc">Net Margin = $371 / $2,143 = ~17%</div>
+          <p>The CEO wanted 20%. The case was about finding what's eating into that 3% gap — it turned out to be SG&A rising from 15% to 20% of revenue.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">💰</span> EBITDA & EBITDA Margin</div>
+        <span class="concept-tag tag-metric">METRIC</span>
+      </div>
+      <div class="concept-body">
+        <p>EBITDA stands for Earnings Before Interest, Taxes, Depreciation, and Amortization. It's used everywhere in M&A and valuation because it strips out financing and accounting choices to show how profitable the core business is. Think of it as "cash profit from operations."</p>
+        <div class="formula-box">EBITDA = Net Income + Interest + Taxes + Depreciation + Amortization<br>EBITDA Margin = EBITDA / Revenue × 100%</div>
+        <div class="example-box">
+          <div class="example-label">🛏 Example — from Haas case book (ComfortFoam mattress company)</div>
+          <p>ComfortFoam: Revenue = $1.7B, EBITDA Margin = 12%</p>
+          <div class="example-calc">EBITDA = $1.7B × 12% = $204M</div>
+          <p>A competitor had 19% EBITDA margin and a Price-to-EBITDA multiple of 14.9 vs ComfortFoam's 8.9 — that's why the competitor was valued much higher despite lower revenue. EBITDA margin matters for valuation.</p>
+        </div>
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <p><strong>When you see EBITDA in a case:</strong> It's usually being used to value a company. Multiply EBITDA × a multiple (e.g. 8x) to get company value. More on this in the Valuation section.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: COSTS -->
+  <div class="section" id="costs">
+    <div class="section-header">
+      <span class="section-num">03 — Cost Types</span>
+      <h2>Fixed vs. Variable Costs</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🔒</span> Fixed Costs</div>
+        <span class="concept-tag tag-metric">CONCEPT</span>
+      </div>
+      <div class="concept-body">
+        <p>Costs that don't change with volume. You pay them regardless of whether you sell 1 unit or 1 million units. Like a cloud server you rent regardless of traffic.</p>
+        <div class="formula-box">Examples: Rent, Salaries, Insurance, Depreciation, Equipment leases</div>
+        <div class="example-box">
+          <div class="example-label">🌱 Example — from Haas case book (Jamaican Land Investment)</div>
+          <p>The farm has Fixed Cost = $500 initial setup + $350/year salary (labor).</p>
+          <p>Even if you grow zero plants, you still owe $350/year. This is why scale matters — spreading fixed costs over more units lowers the cost per unit.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">📈</span> Variable Costs</div>
+        <span class="concept-tag tag-metric">CONCEPT</span>
+      </div>
+      <div class="concept-body">
+        <p>Costs that scale with production. Like AWS bills that go up when more users hit your API. In manufacturing, variable costs are typically the raw materials and direct labor per unit.</p>
+        <div class="formula-box">Total Variable Cost = Variable Cost per Unit × Number of Units<br>Total Cost = Fixed Cost + Variable Cost</div>
+        <div class="example-box">
+          <div class="example-label">🌺 Example — from Haas case book (Jamaican farm)</div>
+          <p>Exotic Flowers: Price per plant = $25, Variable Cost per plant = $17</p>
+          <div class="example-calc">Margin per plant = $25 − $17 = $8</div>
+          <div class="example-calc">50 plants/acre × $8 = $400 profit per acre</div>
+          <p>The interviewer expected you to rank crops by profit-per-acre to decide which to grow.</p>
+        </div>
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <p><strong>Key insight:</strong> When a company increases production, fixed costs per unit go down (economies of scale), but total variable costs go up proportionally. This is why in many cases, growing volume is the answer — you spread fixed costs over more units.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">⚖️</span> Break-Even Analysis</div>
+        <span class="concept-tag tag-formula">FORMULA</span>
+      </div>
+      <div class="concept-body">
+        <p>Break-even is the volume you need to sell just to cover all costs (zero profit). Super common in market entry cases: "Is it worth entering this market?"</p>
+        <div class="formula-box">Break-Even Volume = Fixed Costs / (Price − Variable Cost per Unit)<br><br>Note: (Price − Variable Cost) = "Contribution Margin per Unit"</div>
+        <div class="example-box">
+          <div class="example-label">🌞 Example — from Haas case book (SunFury solar)</div>
+          <p>Solar panels: Launch cost (fixed) = $35M, Profit per panel = $5, Market = 22.5M panels</p>
+          <div class="example-calc">Break-even units = $35M / $5 = 7,000,000 panels</div>
+          <p>At 10% market share = 2.25M panels × $5 = $11.25M profit. That's less than the $35M launch cost → they LOSE money. This was the key insight that led to "don't enter."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: PROFITABILITY -->
+  <div class="section" id="profitability">
+    <div class="section-header">
+      <span class="section-num">04 — Profitability Framework</span>
+      <h2>How to Diagnose Declining Profits</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🔍</span> The Profitability Drill-Down</div>
+        <span class="concept-tag tag-method">METHOD</span>
+      </div>
+      <div class="concept-body">
+        <p>When a company's profits are declining, here is the exact process interviewers expect. This appeared in virtually every case book.</p>
+        <div class="formula-box">Step 1: Is it Revenue or Cost?<br>Step 2: If Revenue → is it Price or Volume?<br>Step 3: If Volume → which product/segment/region?<br>Step 4: If Cost → is it Fixed or Variable? Which line item?</div>
+        <div class="example-box">
+          <div class="example-label">☕ Example — CoffeeCo from Haas case book</div>
+          <p><strong>Clue 1:</strong> Revenue is declining → drill into price vs. volume</p>
+          <p><strong>Clue 2:</strong> Volume per store is down only at new stores → drill into why</p>
+          <p><strong>Answer:</strong> New stores can't sell sandwiches (kitchen permits) → lower revenue per store</p>
+          <p><strong>Clue 3:</strong> Gross margin is fine (50%), but OpEx margin rose → drill into OpEx</p>
+          <p><strong>Answer:</strong> New store labor costs higher due to overtime → fix scheduling</p>
+        </div>
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <p><strong>Margin math trick:</strong> Always convert dollar figures to percentages of revenue. A cost going from $200 to $500 sounds bad, but if revenue went from $1,000 to $1,800, the margin actually stayed flat. That's what interviewers look for you to catch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: VALUATION -->
+  <div class="section" id="valuation">
+    <div class="section-header">
+      <span class="section-num">05 — Valuation</span>
+      <h2>How Much Is a Company Worth?</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🏷️</span> EBITDA Multiple (Comparable Company Analysis)</div>
+        <span class="concept-tag tag-method">METHOD</span>
+      </div>
+      <div class="concept-body">
+        <p>The fastest way to value a company in a case. Find similar public companies, look at their Price/EBITDA multiple, and apply it. It's like saying "my startup is like Stripe, and Stripe trades at 30x earnings, so I'm worth 30x mine."</p>
+        <div class="formula-box">Company Value = EBITDA × Multiple (P/EBITDA)<br><br>Typical multiples appear in the case data. Common range: 6x–15x</div>
+        <div class="example-box">
+          <div class="example-label">📺 Example — Duke case book (Activist Action, CPG company)</div>
+          <p>The benchmark: FV/EBITDA = 3.5 (given in the case)</p>
+          <p>Silky Sweets brand: Revenue = $12B, EBITDA Margin = 25%</p>
+          <div class="example-calc">EBITDA = $12B × 25% = $3B</div>
+          <div class="example-calc">Value = $3B × 3.5 = $10.5B</div>
+          <p>The company recommended selling Silky Sweets for $10.5B to return cash to shareholders.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">📐</span> DCF — Discounted Cash Flow</div>
+        <span class="concept-tag tag-method">METHOD</span>
+      </div>
+      <div class="concept-body">
+        <p>The idea: money today is worth more than money tomorrow (because you can invest it). DCF calculates how much future cash flows are worth in today's dollars. This is the "real" valuation method but you rarely calculate the full thing in a case — you just need to know the concept.</p>
+        <div class="formula-box">Value = Future Cash Flow / Discount Rate (r)<br><br>Or simplified for perpetuity: Value = Annual Profit / r<br><br>More precisely: Value = Annual Profit / (r − g)<br>where g = expected growth rate</div>
+        <div class="example-box">
+          <div class="example-label">🎬 Example — Duke case book (Mapflix entering Nigeria)</div>
+          <p>Post-tax profit = $13.5M/year, WACC (discount rate) = 15%, Growth = 5%</p>
+          <div class="example-calc">Terminal Value = $13.5M / (15% − 5%) = $13.5M / 10% = $135M</div>
+          <div class="example-calc">NPV = $135M − $90M investment = $45M (positive → do the deal)</div>
+        </div>
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <p><strong>WACC</strong> = Weighted Average Cost of Capital. Think of it as the minimum return the company needs to earn to satisfy its investors and debt holders. When discount rate goes up → valuation goes down.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🔢</span> NPV — Net Present Value</div>
+        <span class="concept-tag tag-formula">FORMULA</span>
+      </div>
+      <div class="concept-body">
+        <p>NPV tells you whether an investment is worth it. If NPV > 0, the investment earns more than your cost of capital → do it. If NPV &lt; 0 → don't do it.</p>
+        <div class="formula-box">NPV = Present Value of All Future Cash Flows − Initial Investment<br><br>Simple version: NPV = (Annual Profit / Discount Rate) − Upfront Cost</div>
+        <div class="example-box">
+          <div class="example-label">🌿 Example — Duke case book (Going Green / marijuana dispensaries)</div>
+          <p>Washington dispensary: Annual Cash Flow = $750K/store, Discount Rate = 10%</p>
+          <div class="example-calc">Value per store = $750K / 10% = $7.5M</div>
+          <div class="example-calc">30 stores: Total value = $225M</div>
+          <div class="example-calc">Purchase cost = 30 × $1.5M = $45M</div>
+          <div class="example-calc">NPV = $225M − $45M = $180M ✅ (invest!)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: INVESTMENT ANALYSIS -->
+  <div class="section" id="investment">
+    <div class="section-header">
+      <span class="section-num">06 — Investment Analysis</span>
+      <h2>Should We Make This Investment?</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">⏱️</span> Payback Period</div>
+        <span class="concept-tag tag-formula">FORMULA</span>
+      </div>
+      <div class="concept-body">
+        <p>The simplest investment test: how many years until you get your money back? McKinsey cases frequently give you a threshold (e.g., "board requires payback in under 5 years") and ask you to check if the investment clears it.</p>
+        <div class="formula-box">Payback Period = Initial Investment / Annual Profit (or Annual Savings)</div>
+        <div class="example-box">
+          <div class="example-label">🎪 Example — Wharton case book (Caesars / Penn & Teller)</div>
+          <p>Switching to a new show costs $2.4M upfront, saves $600K/year more profit</p>
+          <div class="example-calc">Payback = $2.4M / $600K = 4 years</div>
+          <p>The interviewer notes this is "too long" in a competitive Vegas market — recommendation was to stay with current show.</p>
+        </div>
+        <div class="example-box">
+          <div class="example-label">⛏ Example — Wharton case book (Iron ore mine expansion)</div>
+          <p>Investment = $3B, additional annual profit = $690M</p>
+          <div class="example-calc">Payback = $3B / $690M = ~4.3 years → under 5-year threshold ✅</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🎯</span> ROIC — Return on Invested Capital</div>
+        <span class="concept-tag tag-ratio">RATIO</span>
+      </div>
+      <div class="concept-body">
+        <p>How much profit you generate per dollar invested. The higher, the better. Think of it like the interest rate your investment earns.</p>
+        <div class="formula-box">ROIC = Net Income / Capital Invested × 100%<br><br>Or: ROIC = (Value of Investment / Initial Investment) − 1</div>
+        <div class="example-box">
+          <div class="example-label">🚗 Example — Haas case book (AlphaAuto electric vehicles)</div>
+          <p>Economy segment, high price, retrofit facility:</p>
+          <div class="example-calc">15,000 units × ($32K − $24K) margin = $120M gross profit</div>
+          <div class="example-calc">Less OpEx (5% × $480M revenue) = $24M</div>
+          <div class="example-calc">Net Income = $120M − $24M = $96M... → wait, let me use the book's numbers:</div>
+          <div class="example-calc">Net Income = $135M, Investment = $1B</div>
+          <div class="example-calc">ROIC = $135M / $1B = 13.5% ← best option</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">🛣 Example — Wharton case book (Brazilian highway concessions)</div>
+          <p>Primary investment: Value = $210M, Initial Investment = $150M</p>
+          <div class="example-calc">ROIC = ($210M / $150M) − 1 = 40%</div>
+          <p>M&A option had ROIC of only 20% → primary investment wins</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">📋</span> Profitability Index (for Capital Rationing)</div>
+        <span class="concept-tag tag-formula">FORMULA</span>
+      </div>
+      <div class="concept-body">
+        <p>When you have limited capital and must choose between multiple projects, rank them by NPV per dollar invested. Pick the highest-ranked ones until you run out of money.</p>
+        <div class="formula-box">Profitability Index = NPV / Capital Investment Required<br><br>Rank projects highest → lowest. Fund until budget runs out.</div>
+        <div class="example-box">
+          <div class="example-label">💊 Example — Duke case book (Goodbye Horses / pharma)</div>
+          <p>Company has $14.7B to invest. 6 projects available:</p>
+          <div class="example-calc">Project A: $10B NPV / $9B = 1.11</div>
+          <div class="example-calc">Project B: $10B NPV / $6B = 1.67 ← highest!</div>
+          <div class="example-calc">Project C: $7B NPV / $5B = 1.40</div>
+          <div class="example-calc">Project D: $5B NPV / $4B = 1.25</div>
+          <div class="example-calc">Project E: $5B NPV / $3B = 1.67 ← tied for highest!</div>
+          <div class="example-calc">Fund B + C + E = $6B + $5B + $3B = $14B → under budget ✅ → NPV = $22B</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: PRICING -->
+  <div class="section" id="pricing">
+    <div class="section-header">
+      <span class="section-num">07 — Pricing Strategy</span>
+      <h2>How to Think About Setting a Price</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">💲</span> Three Approaches to Pricing</div>
+        <span class="concept-tag tag-method">METHOD</span>
+      </div>
+      <div class="concept-body">
+        <p>In any pricing case, structure your thinking around these three lenses:</p>
+        <div class="formula-box">1. Cost-Plus Pricing: Price = Cost + Desired Margin<br>2. Value-Based Pricing: Price = Customer's Willingness to Pay (WTP)<br>3. Competitive Pricing: Price = Competitor's Price ± premium/discount</div>
+        <div class="example-box">
+          <div class="example-label">🩸 Example — Haas case book (LifeRenew blood substitute)</div>
+          <p>Vet clinics mark up products 100% (they pay $X, sell for $2X).</p>
+          <p>If LifeRenew charges $200/unit → vets sell at $400/unit.</p>
+          <p>The case asks: what price maximizes LifeRenew's revenue while keeping vets happy and still getting adoption?</p>
+          <p>Recommendation: $200/unit based on value vs. existing alternatives.</p>
+        </div>
+        <div class="example-box">
+          <div class="example-label">💊 Example — Duke case book (Fringe Science / pharma pricing)</div>
+          <p>Drug priced at: Discount ($5), Parity ($10), or Premium ($15)</p>
+          <div class="example-calc">Premium strategy: 50% of hospitals × $15 × 1.5B doses = $11.25B revenue</div>
+          <div class="example-calc">Parity strategy: 60% × $10 × 1.5B doses = $9B revenue</div>
+          <p>Premium wins despite lower market share → price effect outweighs volume loss.</p>
+        </div>
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <p><strong>Price elasticity intuition:</strong> If demand barely drops when you raise price → raise price. If demand collapses → don't. In the pharma case, premium pricing only reduced hospital adoption slightly, so it was worth it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: MARKET SIZING -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">08 — Market Math</span>
+      <h2>Revenue & Market Share Calculations</h2>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🌍</span> Market Size → Revenue</div>
+        <span class="concept-tag tag-formula">FORMULA</span>
+      </div>
+      <div class="concept-body">
+        <p>Common calculation chain in market entry cases: start from total market, apply your expected market share, get your revenue.</p>
+        <div class="formula-box">Total Market Revenue = # of customers × Price per unit<br>Your Revenue = Total Market Revenue × Your Market Share %</div>
+        <div class="example-box">
+          <div class="example-label">🚗 Example — Haas case book (AlphaAuto electric vehicles)</div>
+          <p>Total EV units forecast 2018 = 400,000</p>
+          <div class="example-calc">Economy segment (75%): 300,000 units</div>
+          <div class="example-calc">AlphaAuto share (10%): 30,000 units</div>
+          <div class="example-calc">At $30K/car: Revenue = 30,000 × $30K = $900M</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">📡 Example — Haas case book (MexTell telecom valuation)</div>
+          <p>1.5M Premium users × $100/month × 12 months = $1.8B annual revenue</p>
+          <p>This feeds into a DCF to value MexTell at $7.6B → above $6B threshold → recommend the acquisition.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🏪</span> Unit Economics</div>
+        <span class="concept-tag tag-formula">FORMULA</span>
+      </div>
+      <div class="concept-body">
+        <p>Unit economics = profitability at the level of one unit sold. Mastering this lets you quickly size up whether a business makes sense. Think: "what's the profit on one beer barrel, one shoe, one parking meter?"</p>
+        <div class="formula-box">Profit per Unit = Price − Variable Cost per Unit<br>Total Profit = (Price − VC) × # Units − Fixed Costs</div>
+        <div class="example-box">
+          <div class="example-label">🍺 Example — Duke case book (Duck Island Beer)</div>
+          <p>Price = $10 per 6-pack, 660,000 bottles total</p>
+          <div class="example-calc">Revenue = $10 / 6 bottles × 660,000 bottles = $1.1M</div>
+          <div class="example-calc">Cost per bottle (import): $0.50 brewing + $0.50 shipping + $1/6 tariff = ~$1.17/bottle</div>
+          <div class="example-calc">Total cost = $1.17 × 660,000 = $770,000</div>
+          <div class="example-calc">Profit = $1.1M − $0.77M = $330,000 ✅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- QUICK REFERENCE -->
+  <div class="section" id="quick-ref">
+    <div class="section-header">
+      <span class="section-num">Quick Reference</span>
+      <h2>All Formulas at a Glance</h2>
+    </div>
+    <div class="quick-ref-grid">
+      <div class="quick-ref-card">
+        <div class="qr-label">Profit</div>
+        <div class="qr-formula">Revenue − Costs</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Revenue</div>
+        <div class="qr-formula">Price × Volume</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Gross Margin %</div>
+        <div class="qr-formula">(Rev − COGS) / Rev</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Operating Margin %</div>
+        <div class="qr-formula">Op. Profit / Revenue</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Net Margin %</div>
+        <div class="qr-formula">Net Income / Revenue</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">EBITDA</div>
+        <div class="qr-formula">Net Income + Interest + Taxes + D&A</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Company Value</div>
+        <div class="qr-formula">EBITDA × Multiple</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Perpetuity Value</div>
+        <div class="qr-formula">Cash Flow / (r − g)</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">NPV</div>
+        <div class="qr-formula">PV(Cash Flows) − Investment</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Payback Period</div>
+        <div class="qr-formula">Investment / Annual Profit</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Break-Even Volume</div>
+        <div class="qr-formula">Fixed Cost / (Price − Var Cost)</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">ROIC</div>
+        <div class="qr-formula">Net Income / Capital Invested</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Market Revenue</div>
+        <div class="qr-formula">Market Size × Price × Share</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Profitability Index</div>
+        <div class="qr-formula">NPV / Capital Required</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Variable Cost Total</div>
+        <div class="qr-formula">VC per unit × # Units</div>
+      </div>
+      <div class="quick-ref-card">
+        <div class="qr-label">Profit per Acre</div>
+        <div class="qr-formula">Units/acre × (Price − VC)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERVIEW TIPS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">09 — Interview Strategy</span>
+      <h2>How to Use This in the Room</h2>
+    </div>
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-title"><span class="concept-icon">🎓</span> The 5-Step Financial Analysis Playbook</div>
+        <span class="concept-tag tag-method">STRATEGY</span>
+      </div>
+      <div class="concept-body">
+        <div class="formula-box">
+          Step 1 → When profits decline: split into Revenue vs. Cost<br>
+          Step 2 → Revenue issue: split into Price vs. Volume vs. Mix<br>
+          Step 3 → Cost issue: split into Fixed vs. Variable vs. which line<br>
+          Step 4 → Convert everything to margins (÷ by Revenue)<br>
+          Step 5 → Compare to prior year OR competitor benchmark
+        </div>
+        <p>From the Haas book: "<em>Revenue → P × Q. Cost → F + V. Margin → each divided by Revenue.</em>" These three rows are what every interviewer has in their guide notes.</p>
+        <div class="tip-box">
+          <span class="tip-icon">🚀</span>
+          <p><strong>For a CS student:</strong> Treat financial analysis like debugging. The income statement is your stack trace. Margins are your metrics dashboard. You're narrowing down which function is causing the performance regression. That framing will help you stay calm and structured.</p>
+        </div>
+        <div class="tip-box">
+          <span class="tip-icon">📊</span>
+          <p><strong>When given an exhibit with lots of data:</strong> Don't read every number. First compute margins (each row ÷ revenue). Then look for what changed year-over-year. The outlier is usually your answer. In Sardine Airlines: SG&A jumped from 15% → 20% of revenue while everything else was stable. That's it — that's the whole case.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>
